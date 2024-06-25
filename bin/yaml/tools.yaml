@@ -13,7 +13,7 @@ tools:
       - 3.27.9
       - 3.28.0-rc5
       - name: 3.28.0
-        symlink: cmake  # The one distinguished cmake we use for "cmake" on the site
+        symlink: cmake # The one distinguished cmake we use for "cmake" on the site
       - 3.28.4
       - 3.29.2
   ninja:
@@ -32,7 +32,7 @@ tools:
     compression: xz
     check_exe: bin/heaptrack --help
     depends:
-     - tools/patchelf 0.15.0
+      - tools/patchelf 0.15.0
     targets:
       - v1.3.0
     after_stage_script:
@@ -43,13 +43,13 @@ tools:
     check_exe: bin/include-what-you-use --version
     path_name: iwyu/{name}
     targets:
-      - name: '0.12'
+      - name: "0.12"
         after_stage_script:
           - ln -s /opt/compiler-explorer/clang-8.0.0/lib iwyu-{name}/lib
-      - name: '0.20'
+      - name: "0.20"
         after_stage_script:
           - ln -s /opt/compiler-explorer/clang-16.0.0/lib iwyu-{name}/lib
-      - name: '0.21'
+      - name: "0.21"
         after_stage_script:
           - ln -s /opt/compiler-explorer/clang-17.0.1/lib iwyu-{name}/lib
   pvs-studio:
@@ -146,9 +146,9 @@ tools:
     check_exe: fpm --version
     filename: fpm
     after_stage_script:
-    - chmod +x fpm
+      - chmod +x fpm
     targets:
-    - 0.9.0
+      - 0.9.0
   baksmali:
     type: singleFile
     dir: baksmali-{name}
@@ -159,3 +159,12 @@ tools:
     url: https://storage.googleapis.com/r8-releases/smali/{name}/{filename}
     targets:
       - 3.0.3
+  wabt:
+    type: tarballs
+    url: https://github.com/WebAssembly/wabt/releases/download/{name}/wabt-{name}-ubuntu.tar.gz
+    compression: gz
+    dir: wabt-{name}
+    check_exe: bin/wat2wasm --version
+    symlink: wabt
+    targets:
+      - 1.0.34

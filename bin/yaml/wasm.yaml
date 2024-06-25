@@ -9,3 +9,16 @@ compilers:
       untar_dir: wasmtime-v{name}-x86_64-linux
       targets:
         - 20.0.1
+
+    wasmer:
+      type: tarballs
+      compression: gz
+      url: https://github.com/wasmerio/wasmer/releases/download/v{name}/wasmer-linux-amd64.tar.gz
+      check_exe: bin/wasmer --version
+      dir: wasmer-{name}
+      create_untar_dir: true
+      untar_dir: wasmer-{name}
+      depends:
+        - tools/wabt 1.0.34
+      targets:
+        - 4.2.8
